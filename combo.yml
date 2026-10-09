@@ -1,0 +1,5 @@
+# Generated from the combos section of randomcontainers/libheif package.yml by randomcontainers/ci.
+# Do not edit; change package.yml in randomcontainers/libheif instead.
+name: libheif-exiftool
+owner: libheif
+with: [exiftool]
