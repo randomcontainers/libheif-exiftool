@@ -58,7 +58,16 @@ gh attestation verify oci://ghcr.io/randomcontainers/libheif-exiftool:latest \
   --repo randomcontainers/libheif-exiftool --signer-repo randomcontainers/ci
 ```
 
-Images from `ghcr.io/randomcontainers/libheif` are built in [randomcontainers/libheif](https://github.com/randomcontainers/libheif), so verify them with `--repo randomcontainers/libheif --signer-repo randomcontainers/ci`.
+Each image also has a keyless cosign signature from the same workflow, for admission controllers that check cosign signatures:
+
+```sh
+cosign verify ghcr.io/randomcontainers/libheif-exiftool:latest \
+  --certificate-identity https://github.com/randomcontainers/ci/.github/workflows/build.yml@refs/tags/v1 \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  --certificate-github-workflow-repository randomcontainers/libheif-exiftool
+```
+
+Images from `ghcr.io/randomcontainers/libheif` are built in [randomcontainers/libheif](https://github.com/randomcontainers/libheif), so name that repository in `--repo` and `--certificate-github-workflow-repository`.
 
 ## Updates
 
